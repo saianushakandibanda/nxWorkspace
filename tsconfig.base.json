@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@nx-workspace/category": ["libs/category/src/index.ts"],
-      "@nx-workspace/home": ["libs/home/src/index.ts"]
+      "@nx-workspace/home": ["libs/home/src/index.ts"],
+      "@nx-workspace/product": ["libs/product/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
