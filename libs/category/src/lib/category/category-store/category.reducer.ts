@@ -18,6 +18,7 @@ export const categoryReducer = createReducer(
     return {
       ...state,
       categories: props.categories,
+      error: ''
     };
   }),
 
