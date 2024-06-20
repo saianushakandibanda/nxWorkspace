@@ -5,15 +5,15 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CategoryService } from '../services/category.service';
 import {
     getCategories,
-    getCategoriesFailure,
     getCategoriesSuccess,
   } from './category.action';
+
 
 @Injectable()
 export class CategoriesEffects {
   constructor(
     private actions$: Actions,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
   ) {}
 
   loadCategories$ = createEffect(() =>

@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Products } from './models/ProductData';
 import { Observable } from 'rxjs';
+import { setCurrentCategory } from '@nx-workspace/category';
 @Component({
   selector: 'lib-product',
   standalone: true,
@@ -17,13 +18,10 @@ import { Observable } from 'rxjs';
 })
 export class ProductComponent implements OnInit {
   @Input() categoryName: string = '';
-  
-  constructor(public http: HttpClient, public store: Store) {
-    
-  }
+
+  constructor(public http: HttpClient, public store: Store) {}
   ngOnInit(): void {
     this.store.dispatch(productActions.loadProduct());
   }
   products$ = this.store.select(selectProducts);
-  
 }

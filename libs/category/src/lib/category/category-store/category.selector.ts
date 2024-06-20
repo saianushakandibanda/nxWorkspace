@@ -19,6 +19,11 @@ export const selectCategoryError = createSelector(
     (state) => state.error
 );
 
+export const selectCurrentCategory = createSelector(
+    selectCategoryState,
+    (state)=>state.currentCategory
+);
+
 export const categoryFeature = createFeature({
     name: categoryFeatureKey,
     reducer: categoryReducer,

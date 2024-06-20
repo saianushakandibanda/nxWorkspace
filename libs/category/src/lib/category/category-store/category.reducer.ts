@@ -1,5 +1,5 @@
 import {
-  getCategories,
+  setCurrentCategory,
   getCategoriesFailure,
   getCategoriesSuccess,
 } from './category.action';
@@ -27,6 +27,13 @@ export const categoryReducer = createReducer(
         ...state,
         categories:[],
         error:props.error
+    }
+  }),
+
+  on(setCurrentCategory,(state,{category})=>{
+    return {
+        ...state,
+        currentCategory : category
     }
   }),
 

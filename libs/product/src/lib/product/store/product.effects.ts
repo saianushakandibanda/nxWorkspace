@@ -9,12 +9,12 @@ export const loadProductsByCategory = createEffect(
       return actions$.pipe(
         ofType(productActions.loadProduct),
         exhaustMap((action) =>
-          productService.getProductByCategory('jewelery').pipe(
+          productService.getProductByCategory().pipe(
             map((products:any) => productActions.productSuccess({ products }))
             //   catchError(() => of(productActions.productFailure('Error Occured')))
           )
         )
       );
     },
-    { functional: true }
+    { functional: true ,dispatch: true}
   );

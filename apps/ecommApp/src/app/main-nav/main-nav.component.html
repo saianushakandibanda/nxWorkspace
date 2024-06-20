@@ -6,7 +6,7 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <ng-container *ngFor="let cat of categoriesData$|async">
-        <a mat-list-item [routerLink]="['category',cat]">{{cat}}</a>
+        <a mat-list-item (click)="setCategory(cat)" [routerLink]="['category',cat]">{{cat}}</a>
       </ng-container>
       
     </mat-nav-list>
