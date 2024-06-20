@@ -11,7 +11,6 @@ export const loadProductsByCategory = createEffect(
         exhaustMap((action) =>
           productService.getProductByCategory().pipe(
             map((products:any) => productActions.productSuccess({ products }))
-            //   catchError(() => of(productActions.productFailure('Error Occured')))
           )
         )
       );

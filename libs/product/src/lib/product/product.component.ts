@@ -7,8 +7,6 @@ import { selectProducts } from './store/product.selector';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Products } from './models/ProductData';
-import { Observable } from 'rxjs';
-import { setCurrentCategory } from '@nx-workspace/category';
 @Component({
   selector: 'lib-product',
   standalone: true,
@@ -24,4 +22,7 @@ export class ProductComponent implements OnInit {
     this.store.dispatch(productActions.loadProduct());
   }
   products$ = this.store.select(selectProducts);
+  addToCart(product: Products) {
+    this.store.dispatch(productActions.addToCart({cartItem:product}))
+  }
 }

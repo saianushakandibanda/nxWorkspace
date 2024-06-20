@@ -13,4 +13,9 @@ export const appRoutes: Route[] = [
       provideEffects({ loadProductsByCategory }),
     ],
   },
+  {
+    path: 'cart',
+    loadComponent: () =>
+      import('@nx-workspace/cart').then((m) => m.CartComponent),
+  },
 ];

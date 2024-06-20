@@ -7,6 +7,7 @@ export const initialState: ProductState = {
   products: [],
   productCount: 0,
   error: '',
+  cartItems : []
 };
 
 export const productReducer = createReducer(
@@ -22,5 +23,11 @@ export const productReducer = createReducer(
     products: [],
     productCount: 0,
     error: action.error,
+  })),
+
+  on(productActions.addToCart,(state,{cartItem})=>({
+    ...state,
+    cartItems : [...state.cartItems,cartItem]
   }))
+
 );

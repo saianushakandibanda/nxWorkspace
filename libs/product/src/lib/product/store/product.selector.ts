@@ -15,6 +15,11 @@ export const selectProducts = createSelector(
     (state) => state.products
 );
 
+export const selectCartItems = createSelector(
+    selectProductState,
+    (state)=>state.cartItems
+);
+
 
 export const productFeature = createFeature({
     name: productFeatureKey,
