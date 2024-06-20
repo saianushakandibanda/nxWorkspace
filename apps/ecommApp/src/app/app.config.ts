@@ -1,5 +1,5 @@
 import { ApplicationConfig, isDevMode, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withEnabledBlockingInitialNavigation } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideState, provideStore } from '@ngrx/store';
@@ -17,6 +17,11 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideState(categoryFeature),
     provideStoreDevtools({maxAge:25,logOnly: !isDevMode()}),
-    provideEffects([CategoriesEffects])
+    provideEffects([CategoriesEffects]),
+    provideRouter(
+      appRoutes,
+      withEnabledBlockingInitialNavigation(),
+      withComponentInputBinding()
+    ),
   ],
 };
