@@ -2,12 +2,12 @@ import { Route } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
 import { loadProductsByCategory, productFeature } from '@nx-workspace/product';
-
+import { authGuard } from '@nx-workspace/login';
 export const appRoutes: Route[] = [
   {
     path: '',
     redirectTo: 'login',
-    pathMatch : 'full'
+    pathMatch: 'full',
   },
   {
     path: 'category/:categoryName',
@@ -17,11 +17,13 @@ export const appRoutes: Route[] = [
       provideState(productFeature),
       provideEffects({ loadProductsByCategory }),
     ],
+    canMatch: [authGuard],
   },
   {
     path: 'cart',
     loadComponent: () =>
       import('@nx-workspace/cart').then((m) => m.CartComponent),
+    canMatch: [authGuard],
   },
   {
     path: 'login',

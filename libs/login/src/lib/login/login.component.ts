@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { LoginService } from './sevice/login.service';
 
 @Component({
   selector: 'lib-login',
@@ -24,16 +25,14 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class LoginComponent {
   loginBuilderForm!: FormGroup;
-  constructor(public fb: FormBuilder) {
-   
-  }
+  constructor(public fb: FormBuilder, public loginService: LoginService) {}
 
   ngOnInit() {
     this.loginBuilderForm = this.fb.group({
       userName: [''],
       password: [''],
     });
-}
+  }
 
   // loginForm = new FormGroup({
   //   userName: new FormControl('', [Validators.required, Validators.email]),
@@ -45,5 +44,6 @@ export class LoginComponent {
 
   loginSubmit() {
     console.log(this.loginBuilderForm.value);
+    this.loginService.loggedIn();
   }
 }
