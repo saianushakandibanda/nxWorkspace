@@ -4,12 +4,12 @@ import {
   getCategoriesSuccess,
 } from './category.action';
 import { Categories } from '../models/category-list';
-import { createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, on } from '@ngrx/store';
 
 export const initialState: Categories = {
   categories: [],
   currentCategory: '',
-  error:''
+  error: '',
 };
 
 export const categoryReducer = createReducer(
@@ -18,23 +18,38 @@ export const categoryReducer = createReducer(
     return {
       ...state,
       categories: props.categories,
-      error: ''
+      error: '',
     };
   }),
 
-  on(getCategoriesFailure,(state,props)=>{
+  on(getCategoriesFailure, (state, props) => {
     return {
-        ...state,
-        categories:[],
-        error:props.error
-    }
+      ...state,
+      categories: [],
+      error: props.error,
+    };
   }),
 
-  on(setCurrentCategory,(state,{category})=>{
+  on(setCurrentCategory, (state, { category }) => {
     return {
-        ...state,
-        currentCategory : category
-    }
-  }),
-
+      ...state,
+      currentCategory: category,
+    };
+  })
 );
+
+const categoryFeatureKey = 'category';
+
+export const categoryFeature = createFeature({
+  name: categoryFeatureKey,
+  reducer: categoryReducer,
+  extraSelectors: ({
+    selectCategories,
+    selectCurrentCategory,
+    selectError,
+  }) => ({
+    selectCategories,
+    selectCurrentCategory,
+    selectError,
+  }),
+});

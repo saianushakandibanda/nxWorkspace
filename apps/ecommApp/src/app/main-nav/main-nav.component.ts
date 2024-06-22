@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { getCategories, selectCategories, setCurrentCategory } from '@nx-workspace/category';
+import { getCategories, setCurrentCategory, categoryFeature } from '@nx-workspace/category';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -49,5 +49,5 @@ export class MainNavComponent implements OnInit{
       shareReplay()
     );
 
-    categoriesData$ = this.store.select(selectCategories)
+    categoriesData$ = this.store.select(categoryFeature.selectCategories)
 }

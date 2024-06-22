@@ -3,7 +3,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { productActions } from './store/product.actions';
 import { Store } from '@ngrx/store';
-import { selectProducts } from './store/product.selector';
+import { productFeature } from './store/product.reducer';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Products } from './models/ProductData';
@@ -21,7 +21,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(productActions.loadProduct());
   }
-  products$ = this.store.select(selectProducts);
+  products$ = this.store.select(productFeature.selectProducts);
   addToCart(product: Products) {
     this.store.dispatch(productActions.addToCart({cartItem:product}))
   }

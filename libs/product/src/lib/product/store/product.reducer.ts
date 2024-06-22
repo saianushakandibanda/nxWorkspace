@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, on } from '@ngrx/store';
 import { Products } from '../models/ProductData';
 import { productActions } from './product.actions';
 import { ProductState } from '../models/ProductState';
@@ -7,7 +7,7 @@ export const initialState: ProductState = {
   products: [],
   productCount: 0,
   error: '',
-  cartItems : []
+  cartItems: [],
 };
 
 export const productReducer = createReducer(
@@ -25,9 +25,26 @@ export const productReducer = createReducer(
     error: action.error,
   })),
 
-  on(productActions.addToCart,(state,{cartItem})=>({
+  on(productActions.addToCart, (state, { cartItem }) => ({
     ...state,
-    cartItems : [...state.cartItems,cartItem]
+    cartItems: [...state.cartItems, cartItem],
   }))
-
 );
+
+const productFeatureKey = 'product';
+
+export const productFeature = createFeature({
+  name: productFeatureKey,
+  reducer: productReducer,
+  extraSelectors: ({
+    selectProducts,
+    selectProductCount,
+    selectError,
+    selectCartItems,
+  }) => ({
+    selectProducts,
+    selectProductCount,
+    selectError,
+    selectCartItems,
+  }),
+});

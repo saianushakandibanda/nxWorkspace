@@ -1,27 +1,27 @@
-import {
-    createFeature,
-    createFeatureSelector,
-    createSelector,
-} from '@ngrx/store';
-import {  productReducer} from './product.reducer';
-import { ProductState } from '../models/ProductState';
+// import {
+//     createFeature,
+//     createFeatureSelector,
+//     createSelector,
+// } from '@ngrx/store';
+// import {  productReducer} from './product.reducer';
+// import { ProductState } from '../models/ProductState';
 
-const productFeatureKey = 'product'
+// const productFeatureKey = 'product'
 
-export const selectProductState = createFeatureSelector<ProductState>(productFeatureKey);
+// export const selectProductState = createFeatureSelector<ProductState>(productFeatureKey);
 
-export const selectProducts = createSelector(
-    selectProductState,
-    (state) => state.products
-);
+// export const selectProducts = createSelector(
+//     selectProductState,
+//     (state) => state.products
+// );
 
-export const selectCartItems = createSelector(
-    selectProductState,
-    (state)=>state.cartItems
-);
+// export const selectCartItems = createSelector(
+//     selectProductState,
+//     (state)=>state.cartItems
+// );
 
 
-export const productFeature = createFeature({
-    name: productFeatureKey,
-    reducer: productReducer,
-});
+// export const productFeature = createFeature({
+//     name: productFeatureKey,
+//     reducer: productReducer,
+// });
